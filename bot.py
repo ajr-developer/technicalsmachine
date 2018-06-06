@@ -98,7 +98,7 @@ class CryptoBot():
         """
         candles_df = self.candles_df
         candles_df['Close'] = candles_df['Close'].astype('float64') 
-        candles_df = indicators.bollinger_bands(candles_df, 20)
+        candles_df = indicators.bollinger_bands(candles_df, 12)
         current_candle = candles_df.index[-1]
         last_candle = candles_df.loc[current_candle]
 

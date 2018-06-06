@@ -93,19 +93,21 @@ def average_true_range(df, n):
 
 
 def bollinger_bands(df, n):
-    """
+    """Calculate Bollinger Bands for given data
     
     :param df: pandas.DataFrame
     :param n: 
+
     :return: pandas.DataFrame
+
     """
     MA = pd.Series(df['Close'].rolling(n, min_periods=n).mean(), name='MA_' + str(n))
     MSD = pd.Series(df['Close'].rolling(n, min_periods=n).std())
     b1 = MA + (MSD * 2)
-    B1 = pd.Series(b1, name='upperBB')
+    B1 = pd.Series(b1, name='upper_bb')
     df = df.join(B1)
     b2 = MA - (MSD * 2)
-    B2 = pd.Series(b2, name='lowerBB')
+    B2 = pd.Series(b2, name='lower_bb')
     df = df.join(B2)
     df = df.join(MA)
     return df
